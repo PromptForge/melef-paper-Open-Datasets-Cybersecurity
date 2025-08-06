@@ -1,0 +1,21 @@
+{
+  "download_timestamp": "2025-08-06T11:00:33.270990",
+  "datasets_downloaded": [
+    {
+      "name": "OpenPhish Phishing URLs",
+      "file": "openphish_urls.txt",
+      "records": 300
+    },
+    {
+      "name": "Tranco Top Domains",
+      "file": "tranco_domains.csv",
+      "records": 1000000
+    },
+    {
+      "name": "URLhaus Malware URLs",
+      "file": "urlhaus_data.csv",
+      "records": 19549
+    }
+  ],
+  "total_records": 1019849
+}

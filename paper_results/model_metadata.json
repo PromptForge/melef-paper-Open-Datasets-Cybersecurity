@@ -1,0 +1,7 @@
+{
+  "trained_timestamp": "2025-08-06T11:00:37.843693",
+  "model_type": "Random Forest",
+  "vectorizer_type": "TF-IDF Character N-grams",
+  "training_data": "OpenPhish + Tranco",
+  "features": "URL string analysis"
+}

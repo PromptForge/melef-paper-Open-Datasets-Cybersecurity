@@ -1,0 +1,149 @@
+{
+  "analysis_timestamp": "2025-08-06T11:00:34.796411",
+  "dataset_analysis": {
+    "openphish": {
+      "success": true,
+      "total_urls": 300,
+      "unique_domains": 191,
+      "unique_tlds": 33,
+      "top_tlds": [
+        "com",
+        "dev",
+        "io",
+        "app",
+        "org",
+        "help",
+        "shop",
+        "pro",
+        "us",
+        "services"
+      ],
+      "https_ratio": 0.8266666666666667,
+      "protocol_distribution": {
+        "http": 52,
+        "https": 248
+      },
+      "path_distribution": {
+        "root": 51,
+        "deep": 249
+      },
+      "sample_urls": [
+        "http://sngastro.in/abnb/rooms-32231/login.html",
+        "https://pagafacil-enlinea.com/paga-ofertas/bancolombia/sms.html",
+        "https://pagafacil-enlinea.com/paga-ofertas/bancolombia/dinamicaMano.html",
+        "https://pagafacil-enlinea.com/paga-ofertas/bancolombia/contrase%C3%B1a.html",
+        "https://workstation-support.com/a55971b911eb9feeba1184708ba82f9098509bb4"
+      ],
+      "data_type": "Live phishing threats",
+      "timeliness": "Real-time feed (updated frequently)"
+    },
+    "tranco": {
+      "success": true,
+      "total_domains": 1000000,
+      "unique_tlds": 1023,
+      "top_tlds": [
+        "com",
+        "net",
+        "org",
+        "ru",
+        "cn",
+        "de",
+        "br",
+        "uk",
+        "jp",
+        "in"
+      ],
+      "avg_domain_length": 13.653271,
+      "top_domains": [
+        "google.com",
+        "microsoft.com",
+        "facebook.com",
+        "googleapis.com",
+        "mail.ru",
+        "apple.com",
+        "amazonaws.com",
+        "youtube.com",
+        "cloudflare.com",
+        "dzen.ru"
+      ],
+      "data_type": "Popular legitimate domains",
+      "timeliness": "Daily updates",
+      "ranking_methodology": "Research-grade aggregation"
+    },
+    "urlhaus": {
+      "success": true,
+      "total_records": 19549,
+      "data_type": "Malware URLs",
+      "content_sample": "################################################################\n# abuse.ch URLhaus Database Dump (CSV - recent URLs only)      #\n# Last updated: 2025-08-06 07:44:11 (UTC)                      #\n#    ",
+      "timeliness": "Frequent updates"
+    }
+  },
+  "dataset_comparison": {
+    "accessibility": {
+      "openphish": "Immediately accessible",
+      "tranco": "Immediately accessible",
+      "urlhaus": "Sometimes accessible"
+    },
+    "data_volume": {
+      "openphish": 300,
+      "tranco": 1000000,
+      "urlhaus": 19549
+    },
+    "timeliness": {
+      "openphish": "Real-time",
+      "tranco": "Daily",
+      "urlhaus": "Frequent"
+    },
+    "use_cases": {
+      "openphish": "Threat detection, ML training",
+      "tranco": "Benign baseline, reproducible research",
+      "urlhaus": "Malware research"
+    }
+  },
+  "practical_recommendations": {
+    "ml_training": {
+      "recommended_approach": "OpenPhish + Tranco combination",
+      "threat_samples": 300,
+      "benign_samples": 1000000,
+      "balance_ratio": "1:3333",
+      "advantages": [
+        "Both immediately accessible",
+        "Complementary data types",
+        "No API keys needed"
+      ],
+      "considerations": [
+        "May need benign sample balancing",
+        "Tranco domains need validation"
+      ]
+    },
+    "real_time_detection": {
+      "recommended_dataset": "OpenPhish",
+      "update_frequency": "Real-time feed",
+      "current_volume": 300,
+      "advantages": [
+        "Latest threats",
+        "No delays",
+        "Free access"
+      ],
+      "considerations": [
+        "Limited historical data",
+        "Volume varies"
+      ]
+    },
+    "reproducible_research": {
+      "recommended_dataset": "Tranco",
+      "methodology": "Research-grade ranking",
+      "volume": 1000000,
+      "advantages": [
+        "Consistent methodology",
+        "Historical archives",
+        "Academic focus"
+      ],
+      "considerations": [
+        "Daily update cycle",
+        "Legitimate domains only"
+      ]
+    }
+  },
+  "methodology": "Real data analysis - no estimates or simulations"
+}
