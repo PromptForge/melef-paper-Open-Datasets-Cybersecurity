@@ -28,38 +28,6 @@ python run_complete_analysis.py
 - Trained on 900 genuine URLs
 - Ready for deployment
 
-**✅ Publication-Ready Outputs:**
-- 5 high-quality visualizations (300 DPI)
-- Complete quantitative analysis
-- Evidence-based recommendations
-
-## 🎯 Addresses ALL Reviewer Concerns
-
-### Reviewer Concern #1: "Doesn't actually test datasets"
-**✅ SOLVED:** 
-- Makes real API calls to live datasets
-- Downloads 1,019,851 actual records
-- Analyzes genuine phishing/malware URLs
-- Tests real accessibility barriers (429, 401, 404 errors)
-
-### Reviewer Concern #2: "No comparison shown"
-**✅ SOLVED:**
-- Quantitative comparison across 3 datasets
-- Accessibility rates: 100% (OpenPhish, Tranco) vs barriers (PhishTank)
-- Performance metrics: 82.7% HTTPS usage, 191 unique domains
-- Visual comparisons in 5 generated figures
-
-### Reviewer Concern #3: "Which is best unclear" 
-**✅ SOLVED:**
-- Evidence-based recommendations: OpenPhish + Tranco achieves 97.2% ML accuracy
-- Task-specific guidance (ML training vs real-time detection)
-- Clear trade-offs analysis with quantified metrics
-
-### Reviewer Concern #4: "No trade-offs discussed"
-**✅ SOLVED:**
-- Real access testing shows 75% of datasets have barriers
-- Performance vs accessibility trade-offs quantified
-- Cost vs quality analysis with actual measurements
 
 ## 📁 Project Structure
 
@@ -202,31 +170,12 @@ The system includes comprehensive validation:
 ✅ ML Model: 97.2% accuracy on test set
 ```
 
-## 📝 For Academic Papers
-
-### Citation
-```bibtex
-@misc{real_cybersecurity_evaluation_2024,
-  title={Real Cybersecurity Dataset Evaluation: Practical Testing of 1M+ Records},
-  author={[Your Name]},
-  year={2024},
-  note={Practical evaluation system addressing dataset accessibility and quality}
-}
-```
-
 ### Key Metrics to Include
 - **Data Volume**: 1,019,851 real records analyzed
 - **Accessibility Rate**: 67% of datasets immediately accessible
 - **Quality Evidence**: 82.7% HTTPS usage in current threats
 - **Model Performance**: 97.2% accuracy with 100% phishing precision
 - **Research Methodology**: Direct API testing with quantified barriers
-
-### Figures for Paper
-1. `complete_analysis_summary.png` - Main results overview
-2. `model_performance.png` - ML validation results
-3. Generated comparison tables and metrics
-
-## 🐛 Troubleshooting
 
 ### Common Issues
 
@@ -241,16 +190,6 @@ The system includes comprehensive validation:
 pip install -r requirements.txt
 ```
 
-**"Permission denied"**
-```bash
-# Ensure write permissions for output directories
-chmod 755 .
-```
-
-### Support
-- Check system output for specific error messages
-- All API failures are logged with HTTP status codes
-- Contact: [Your email/github]
 
 ## 🏆 Achievement Summary
 
@@ -264,13 +203,6 @@ This project successfully transforms reviewer criticism into empirical strength 
 
 **Result**: Strong, evidence-based cybersecurity dataset evaluation addressing all reviewer concerns with over 1 million real data points.
 
----
 
-## 📞 Contact & Support
-
-**Project**: Real Cybersecurity Dataset Evaluation  
-**Purpose**: Address reviewer concerns with practical testing  
-**Data**: 100% real - zero simulated or estimated values  
-**Results**: Production-ready analysis and ML models  
 
 For questions, issues, or contributions, please see the project repository.
