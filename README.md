@@ -164,4 +164,3 @@ This project successfully transforms reviewer criticism into empirical strength 
 
 **Result**: Strong, evidence-based cybersecurity dataset evaluation addressing all reviewer concerns with over 1 million real data points.
 
-For questions, issues, or contributions, please see the project repository.
