@@ -1,11 +1,11 @@
-# Real Cybersecurity Dataset Evaluation
+# Dataset Evaluation
 
-## 🎯 Project Overview
+## Project Overview
 
-This project provides a **completely real** cybersecurity dataset evaluation system that addresses reviewer concerns about practical testing and dataset comparison. It downloads and analyzes over **1 million real records** from live cybersecurity datasets, trains production ML models, and generates publication-ready results.
+This project provides a cybersecurity dataset evaluation system. It downloads and analyzes cybersecurity datasets, trains production ML models, and generates publication-ready results.
 
 
-## 📊 Real Results Generated
+## 📊 Results Generated
 
 **✅ Over 1 Million Real Records Analyzed:**
 - **300 live phishing URLs** (OpenPhish)
@@ -13,14 +13,14 @@ This project provides a **completely real** cybersecurity dataset evaluation sys
 - **19,551 malware URLs** (URLhaus)
 
 **✅ Production ML Model:**
-- **97.2% accuracy** on real data
+- **97.2% accuracy** on actual data
 - Trained on 900 genuine URLs
 - Ready for deployment
 
 
 ## 🔬 Technical Implementation
 
-### Real Data Sources
+### Data Sources
 - **OpenPhish**: Live phishing URLs (https://openphish.com/feed.txt)
 - **Tranco**: Top 1M domains (https://tranco-list.eu/top-1m.csv.zip)
 - **URLhaus**: Malware URLs (https://urlhaus.abuse.ch/downloads/)
@@ -31,13 +31,8 @@ This project provides a **completely real** cybersecurity dataset evaluation sys
 - **ML Training**: Random Forest classifier with TF-IDF vectorization
 - **Visualizations**: Accessibility charts, performance metrics, summary figures
 
-### Data Authenticity Guarantee
-- **100% real data** - zero simulated or estimated values
-- **Live API calls** - actual HTTP requests with real response codes
-- **Genuine analysis** - parsed URLs, extracted domains, calculated statistics
-- **Production model** - trained on real phishing/benign data
 
-## 📈 Key Findings for Your Paper
+## 📈 Key Findings 
 
 ### Quantitative Results
 - **82.7% of phishing URLs use HTTPS** (reveals modern attack tactics)
@@ -46,18 +41,9 @@ This project provides a **completely real** cybersecurity dataset evaluation sys
 - **97.2% ML accuracy** achieved with accessible datasets
 
 ### Research Implications  
-- Dataset accessibility is a real challenge (25% immediate access rate)
 - Available datasets provide sufficient quality for research
 - OpenPhish + Tranco combination enables complete threat/benign analysis
 - Practical testing methodology successfully demonstrated
-
-### Paper Integration
-```
-"Our practical evaluation analyzed 1,019,851 real cybersecurity 
-records from live datasets. We found that 82.7% of current phishing 
-attacks use HTTPS protocols, and accessible datasets (OpenPhish, Tranco) 
-provide sufficient quality for training ML models achieving 97.2% accuracy."
-```
 
 ## 🛠️ System Requirements
 
@@ -106,7 +92,7 @@ python run_complete_analysis.py
 
 ### Key Metrics to Include
 - **Data Volume**: 1,019,851 real records analyzed
-- **Accessibility Rate**: 67% of datasets immediately accessible
+- **Accessibility Rate**: 67% of datasets are immediately accessible
 - **Quality Evidence**: 82.7% HTTPS usage in current threats
 - **Model Performance**: 97.2% accuracy with 100% phishing precision
-- **Research Methodology**: Direct API testing with quantified barriers
+
