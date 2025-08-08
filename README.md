@@ -79,34 +79,10 @@ joblib>=1.3.0
 
 ## 🔧 Detailed Usage
 
-### Option 1: Complete Pipeline (Recommended)
+###  Complete Pipeline 
 ```bash
 # Runs everything: download → analyze → train → visualize
 python run_complete_analysis.py
-```
-
-### Option 2: Step-by-Step
-```bash
-# 1. Download datasets (1M+ records)
-python download_real_datasets.py
-
-# 2. Analyze data characteristics  
-python analyze_real_data.py
-
-# 3. Train ML model
-python real_phishing_detector.py
-```
-
-### Option 3: Custom Analysis
-```python
-from analyze_real_data import RealDataAnalyzer
-
-# Create analyzer
-analyzer = RealDataAnalyzer()
-
-# Run specific analyses
-results = analyzer.run_analysis()
-print(f"Analyzed {results['total_records']:,} real records")
 ```
 
 ## 📊 Output Files
@@ -128,39 +104,9 @@ print(f"Analyzed {results['total_records']:,} real records")
 - `real_model/url_vectorizer.pkl` - TF-IDF vectorizer
 - `real_model/model_metadata.json` - Training details
 
-## 🧪 Validation & Testing
-
-The system includes comprehensive validation:
-- **API Response Validation**: Checks HTTP status codes
-- **Data Format Validation**: Verifies CSV/JSON structure
-- **Content Analysis**: Validates URL formats, domain extraction
-- **Model Performance**: Tests on holdout data and sample URLs
-
-### Sample Validation Results
-```
-✅ OpenPhish: 300 URLs downloaded, 191 unique domains
-✅ Tranco: 1,000,000 domains extracted, 1,023 TLDs
-✅ URLhaus: 19,551 records processed
-✅ ML Model: 97.2% accuracy on test set
-```
-
 ### Key Metrics to Include
 - **Data Volume**: 1,019,851 real records analyzed
 - **Accessibility Rate**: 67% of datasets immediately accessible
 - **Quality Evidence**: 82.7% HTTPS usage in current threats
 - **Model Performance**: 97.2% accuracy with 100% phishing precision
 - **Research Methodology**: Direct API testing with quantified barriers
-
-
-## 🏆 Achievement Summary
-
-This project successfully transforms reviewer criticism into empirical strength by:
-
-✅ **Replacing descriptive analysis with quantitative measurements**
-✅ **Providing practical testing methodology with real results**  
-✅ **Generating publication-ready evidence and visualizations**
-✅ **Demonstrating complete threat/benign dataset coverage**
-✅ **Training production-ready ML models on real data**
-
-**Result**: Strong, evidence-based cybersecurity dataset evaluation addressing all reviewer concerns with over 1 million real data points.
-
