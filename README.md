@@ -5,7 +5,8 @@ You will need to place malicious_urls.7z and phishgraph.py into the same directo
 
 ## Project Overview
 
-This project provides a cybersecurity dataset evaluation system. It downloads and analyzes cybersecurity datasets, trains production ML models, and generates publication-ready results.
+This project provides a cybersecurity dataset evaluation system. It downloads and analyzes cybersecurity datasets, trains production ML models, and generates publication-ready results. The main dependencoes are sentence_transformers import SentenceTransformer
+and diskannpy.
 
 
 ## 📊 Results Generated
