@@ -1,3 +1,6 @@
+# Run Phishgraph
+You will need malicious_urls.7z and phisgraph.py into the same direcotry. Unzip malicious_urls.7z and then run python3 phishgraph.py
+
 # Dataset Evaluation
 
 ## Project Overview
