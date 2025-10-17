@@ -1,6 +1,6 @@
 # Run Phishgraph
-You will need to place malicious_urls.7z and phishgraph.py into the same directory. Unzip malicious_urls.7z and then run python3 phishgraph.py
-he main dependencoes are sentence_transformers import sentence-transformers and diskannpy.
+You will need to place malicious_urls.7z and phishgraph.py into the same directory. Unzip malicious_urls.7z and then run python3 phishgraph.py.
+The main dependencoes are sentence_transformers and diskannpy.
 
 # Dataset Evaluation
 
