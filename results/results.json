@@ -1,0 +1,175 @@
+{
+  "sample": {
+    "phishing": 300,
+    "benign": 600,
+    "duplicates_removed": 0,
+    "benign_fqdn_conflicts_with_threat_feeds": [],
+    "benign_registered_domain_conflicts_with_threat_feeds": [],
+    "distinct_registered_domains": 713,
+    "phishing_registered_domains": 113,
+    "phishing_with_nonroot_path": 249,
+    "benign_with_nonroot_path": 0
+  },
+  "partition": {
+    "train": 720,
+    "test": 180,
+    "test_benign": 120,
+    "test_phishing": 60
+  },
+  "random_forest_15_features": {
+    "cv_fold_accuracies": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "cv_mean": 1.0,
+    "cv_sd": 0.0,
+    "cv_ci95": [
+      1.0,
+      1.0
+    ],
+    "test_accuracy": 1.0,
+    "test_confusion_matrix [[TN,FP],[FN,TP]]": [
+      [
+        120,
+        0
+      ],
+      [
+        0,
+        60
+      ]
+    ],
+    "test_class_metrics": {
+      "benign": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "phishing": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    }
+  },
+  "logistic_regression_15_features": {
+    "cv_fold_accuracies": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "cv_mean": 1.0,
+    "cv_sd": 0.0,
+    "cv_ci95": [
+      1.0,
+      1.0
+    ],
+    "test_accuracy": 1.0,
+    "test_confusion_matrix [[TN,FP],[FN,TP]]": [
+      [
+        120,
+        0
+      ],
+      [
+        0,
+        60
+      ]
+    ],
+    "test_class_metrics": {
+      "benign": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "phishing": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    }
+  },
+  "random_forest_registered_domain_only": {
+    "cv_fold_accuracies": [
+      0.4301,
+      0.5753,
+      0.6377,
+      0.7101,
+      0.7246,
+      0.5857,
+      0.5942,
+      0.7246,
+      0.6667,
+      0.7429
+    ],
+    "cv_mean": 0.6391992435699327,
+    "cv_sd": 0.09650377836428524,
+    "cv_ci95": [
+      0.5701645992647789,
+      0.7082338878750866
+    ],
+    "test_accuracy": 0.5388888888888889,
+    "test_confusion_matrix [[TN,FP],[FN,TP]]": [
+      [
+        90,
+        30
+      ],
+      [
+        53,
+        7
+      ]
+    ],
+    "test_class_metrics": {
+      "benign": {
+        "precision": 0.6293706293706294,
+        "recall": 0.75,
+        "f1": 0.6844106463878327
+      },
+      "phishing": {
+        "precision": 0.1891891891891892,
+        "recall": 0.11666666666666667,
+        "f1": 0.14432989690721648
+      }
+    }
+  },
+  "gini_importance": {
+    "url_len": 0.2129,
+    "special_.": 0.0335,
+    "special_-": 0.0086,
+    "special_/": 0.2631,
+    "special_=": 0.0003,
+    "special_?": 0.0004,
+    "special_&": 0.0,
+    "special_@": 0.0,
+    "has_login": 0.004,
+    "hostname_len": 0.0329,
+    "subdomain_count": 0.0173,
+    "tld_len": 0.0051,
+    "path_len": 0.2486,
+    "path_levels": 0.1734,
+    "has_exe": 0.0
+  },
+  "misclassified_test_records": [],
+  "adhoc_phishing_probability": {
+    "https://google.com": 0.54,
+    "https://github.com": 0.54,
+    "http://suspicious-bank-login.tk/verify.php": 1.0,
+    "https://facebook.com": 0.53,
+    "http://paypal-security-update.ml/login": 0.99,
+    "https://amazon.com": 0.54,
+    "https://microsoft.com": 0.53
+  }
+}
