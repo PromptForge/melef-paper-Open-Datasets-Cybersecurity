@@ -163,8 +163,8 @@ def generate_final_report():
                 results['analysis'] = json.load(f)
         
         # Model metadata
-        if os.path.exists('real_model/model_metadata.json'):
-            with open('real_model/model_metadata.json', 'r') as f:
+        if os.path.exists('results/results.json'):
+            with open('results/results.json', 'r') as f:
                 results['model'] = json.load(f)
         
         # Create comprehensive report
@@ -185,7 +185,7 @@ def generate_final_report():
                 'Practical dataset accessibility testing methodology',
                 'Real-world data availability assessment',
                 'Evidence-based dataset recommendations',
-                'Production-ready ML model demonstration',
+                'Diagnostic pipeline exposing source-dependent shortcut learning',
                 'Quantitative metrics for dataset comparison'
             ]
         }
@@ -224,8 +224,10 @@ def main():
     if not run_command("Analyze Real Data", ["analyze_real_data.py"]):
         return False
     
-    # Step 3: Train ML model (optional - depends on data availability)
-    run_command("Train Phishing Detection Model", ["real_phishing_detector.py"], required=False)
+    # Step 3: Descriptive measures (Table 5) and diagnostic pipeline (Section 4.4, Figure 2)
+    os.environ["MELEF_DATA"] = "real_data"
+    run_command("Compute Snapshot Measures", ["snapshot_measures.py"], required=False)
+    run_command("Run Diagnostic Classification Pipeline", ["train_classifier.py"], required=False)
     
     # Step 4: Create summary visualization
     create_summary_visualization()
