@@ -1,4 +1,4 @@
-import re
+import os
 import urllib.parse
 import numpy as np
 import pandas as pd
@@ -22,6 +22,9 @@ def extract_15_features(url_string):
     - Domain (3): hostname_len, subdomain_count, tld_len
     - Path (3): path_len, path_levels, has_exe
     """
+    if not isinstance(url_string, str):
+        url_string = str(url_string)
+        
     if not url_string.startswith(('http://', 'https://')):
         url_string = 'http://' + url_string
         
@@ -93,12 +96,39 @@ def evaluate_pipeline(X, y, groups):
     print(f"Held-out Test Accuracy: {accuracy_score(y_test, test_preds)*100:.1f}%")
     print(f"Phishing Precision: {precision_score(y_test, test_preds, pos_label=1)*100:.1f}%")
     print(f"Phishing Recall: {recall_score(y_test, test_preds, pos_label=1)*100:.1f}%")
+    print(f"Phishing F1-Score: {f1_score(y_test, test_preds, pos_label=1)*100:.1f}%")
+    print(f"Benign Precision: {precision_score(y_test, test_preds, pos_label=0)*100:.1f}%")
+    print(f"Benign Recall: {recall_score(y_test, test_preds, pos_label=0)*100:.1f}%")
+    print(f"Benign F1-Score: {f1_score(y_test, test_preds, pos_label=0)*100:.1f}%")
     
     # 3. Logistic Regression Baseline
     lr = LogisticRegression(max_iter=1000, random_state=RANDOM_STATE)
     lr.fit(X_train, y_train)
     lr_preds = lr.predict(X_test)
     print(f"Logistic Regression Test Accuracy: {accuracy_score(y_test, lr_preds)*100:.1f}%")
+    return rf
+
+def run_from_data():
+    csv_candidates = ['dataset.csv', 'urls.csv', 'data/dataset.csv']
+    dataset_path = None
+    for p in csv_candidates:
+        if os.path.exists(p):
+            dataset_path = p
+            break
+            
+    if dataset_path:
+        df = pd.read_csv(dataset_path)
+        url_col = [c for c in df.columns if 'url' in c.lower()][0]
+        label_col = [c for c in df.columns if 'label' in c.lower()][0]
+        
+        X = np.array([extract_15_features(u) for u in df[url_col]])
+        y = np.array(df[label_col].values)
+        groups = np.array([urllib.parse.urlparse(u if u.startswith('http') else 'http://'+u).netloc.split(':')[0] for u in df[url_col]])
+        
+        print(f"Loaded {len(df)} samples from {dataset_path}. Executing evaluation...")
+        evaluate_pipeline(X, y, groups)
+    else:
+        print("MELEF Research Pipeline initialized. Ready to evaluate upon providing dataset.csv.")
 
 if __name__ == "__main__":
-    print("MELEF Research Pipeline: Ready for dataset ingestion and diagnostic evaluation.")
+    run_from_data()
