@@ -12,12 +12,15 @@ Code and data snapshot for the manuscript *An Evaluative Overview of Open Datase
 | Section 4.4, Figure 2 (diagnostic pipeline) | `train_classifier.py` | `results/results.json`, `results/ml_performance_analysis.png`, `dataset.csv` |
 | Section 4.2 protocol (Gate 1), for re-measurement | `accessibility_protocol.py` | `results/accessibility_log.jsonl` |
 | Snapshot download (6 Aug 2025) | `download_real_datasets.py` | `real_data/` |
+| Snapshot overview (`paper_results/analysis_results.json`, `complete_analysis_summary.png`) | `analyze_real_data.py` | `real_analysis_outputs/` |
 
 ```bash
 pip install -r requirements.txt
 python snapshot_measures.py
 python train_classifier.py
 ```
+
+`run_complete_analysis.py` runs the full chain (download, overview, measures, pipeline) on freshly downloaded data in `real_data/`.
 
 Both analysis scripts are deterministic (seed 42) and read the snapshot in `paper_results/`.
 
@@ -28,6 +31,7 @@ Both analysis scripts are deterministic (seed 42) and read the snapshot in `pape
 - `openphish_urls.txt`: OpenPhish community feed, 300 URLs.
 - `urlhaus_data.csv`: URLhaus recent-URLs CSV dump, 19,540 records added between 7 July and 6 August 2025.
 - `tranco_domains.csv`: Tranco top-1M list.
+- `analysis_results.json`, `complete_analysis_summary.png`: overview statistics and figure computed from the snapshot by `analyze_real_data.py`.
 
 Each file remains subject to its provider's terms of use.
 
