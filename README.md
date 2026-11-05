@@ -1,102 +1,61 @@
-# Run Phishgraph
-You will need to place malicious_urls.7z and phishgraph.py into the same directory. Unzip malicious_urls.7z and then run python3 phishgraph.py.
-The main dependencies are sentence_transformers and diskannpy.
+# MELEF: Open Datasets for Cybersecurity Research (code release)
 
-# Dataset Evaluation
+Code and data snapshot for the manuscript *An Evaluative Overview of Open Datasets for Cybersecurity Research: A Practical, Evidence-Based Approach* (Electronics, manuscript electronics-4565560).
 
-## Project Overview
+**Cited release:** tag `v2.1`. The commit hash is given in the manuscript's Data Availability Statement.
 
-This project provides a cybersecurity dataset evaluation system. It downloads and analyzes cybersecurity datasets, trains production ML models, and generates publication-ready results. T
+## What reproduces what
 
+| Manuscript element | Script | Output |
+|---|---|---|
+| Table 5, Section 4.3 (descriptive measures, overlap) | `snapshot_measures.py` | `results/snapshot_measures.json` |
+| Section 4.4, Figure 2 (diagnostic pipeline) | `train_classifier.py` | `results/results.json`, `results/ml_performance_analysis.png`, `dataset.csv` |
+| Section 4.2 protocol (Gate 1), for re-measurement | `accessibility_protocol.py` | `results/accessibility_log.jsonl` |
+| Snapshot download (6 Aug 2025) | `download_real_datasets.py` | `real_data/` |
 
-## 📊 Results Generated
-
-**✅ Over 1 Million Real Records Analyzed:**
-- **300 live phishing URLs** (OpenPhish)
-- **1,000,000 ranked domains** (Tranco)  
-- **19,551 malware URLs** (URLhaus)
-
-**✅ Production ML Model:**
-- **97.2% accuracy** on actual data
-- Trained on 900 genuine URLs
-- Ready for deployment
-
-
-## 🔬 Technical Implementation
-
-### Data Sources
-- **OpenPhish**: Live phishing URLs (https://openphish.com/feed.txt)
-- **Tranco**: Top 1M domains (https://tranco-list.eu/top-1m.csv.zip)
-- **URLhaus**: Malware URLs (https://urlhaus.abuse.ch/downloads/)
-
-### Analysis Features
-- **URL Analysis**: Protocol distribution, domain diversity, TLD analysis
-- **Quality Metrics**: HTTPS usage rates, domain uniqueness, data freshness
-- **ML Training**: Random Forest classifier with TF-IDF vectorization
-- **Visualizations**: Accessibility charts, performance metrics, summary figures
-
-
-## 📈 Key Findings 
-
-### Quantitative Results
-- **82.7% of phishing URLs use HTTPS** (reveals modern attack tactics)
-- **191 unique threat domains** identified from live feeds
-- **1,023 different TLDs** in legitimate traffic
-- **97.2% ML accuracy** achieved with accessible datasets
-
-### Research Implications  
-- Available datasets provide sufficient quality for research
-- OpenPhish + Tranco combination enables complete threat/benign analysis
-- Practical testing methodology successfully demonstrated
-
-## 🛠️ System Requirements
-
-- **Python 3.7+**
-- **Internet connection** (for dataset downloads)
-- **~2GB disk space** (for datasets and models)
-- **5-10 minutes runtime**
-
-### Dependencies
-```
-requests>=2.28.0
-pandas>=2.0.0
-numpy>=1.24.0
-matplotlib>=3.7.0
-seaborn>=0.12.0
-scikit-learn>=1.3.0
-joblib>=1.3.0
-```
-
-## 🔧 Detailed Usage
-
-###  Complete Pipeline 
 ```bash
-# Runs everything: download → analyze → train → visualize
-python run_complete_analysis.py
+pip install -r requirements.txt
+python snapshot_measures.py
+python train_classifier.py
 ```
 
-## 📊 Output Files
+Both analysis scripts are deterministic (seed 42) and read the snapshot in `paper_results/`.
 
-### Data Files
-- `real_data/openphish_urls.txt` - 300 live phishing URLs
-- `real_data/tranco_domains.csv` - 1M ranked domains
-- `real_data/urlhaus_data.csv` - 19K+ malware URLs
-- `real_data/download_summary.json` - Dataset metadata
+## Data snapshot
 
-### Analysis Results  
-- `real_analysis_outputs/analysis_results.json` - Complete analysis
-- `real_analysis_outputs/final_report.json` - Executive summary
-- `real_analysis_outputs/complete_analysis_summary.png` - Main figure
-- `real_analysis_outputs/model_performance.png` - ML performance
+`paper_results/` holds the files analysed in the manuscript, retrieved on 6 August 2025 by `download_real_datasets.py`:
 
-### ML Model
-- `real_model/phishing_classifier.pkl` - Trained Random Forest
-- `real_model/url_vectorizer.pkl` - TF-IDF vectorizer
-- `real_model/model_metadata.json` - Training details
+- `openphish_urls.txt`: OpenPhish community feed, 300 URLs.
+- `urlhaus_data.csv`: URLhaus recent-URLs CSV dump, 19,540 records added between 7 July and 6 August 2025.
+- `tranco_domains.csv`: Tranco top-1M list.
 
-### Key Metrics to Include
-- **Data Volume**: 1,019,851 real records analyzed
-- **Accessibility Rate**: 67% of datasets are immediately accessible
-- **Quality Evidence**: 82.7% HTTPS usage in current threats
-- **Model Performance**: 97.2% accuracy with 100% phishing precision
+Each file remains subject to its provider's terms of use.
 
+## Diagnostic pipeline (`train_classifier.py`)
+
+The steps are:
+
+- **Sampling.** 300 OpenPhish URLs plus 600 Tranco domains, drawn 200 from each rank tier (1–100K, 100K–500K, 500K–1M).
+- **Cleaning.** Exact-duplicate removal, then conflict checks at FQDN and registered-domain level.
+- **Features.** The 15 features of Table 6, computed on each record as supplied by its source.
+- **Partitioning.** Records are grouped by registered domain (Public Suffix List). A stratified group split holds out about 20%. 10-fold `StratifiedGroupKFold` CV runs on the training partition.
+- **Models.** Random Forest (`n_estimators=100, max_depth=15, min_samples_split=5`) and a Logistic Regression baseline.
+- **Representation-matched check.** The same protocol with every record reduced to its registered domain.
+
+The sample and partition assignment are written to `dataset.csv`.
+
+## Accessibility protocol (`accessibility_protocol.py`)
+
+This script implements the protocol of Section 4.2:
+
+- five attempts per dataset at 12-hour intervals;
+- 30 s timeout;
+- descriptive User-Agent;
+- back-off on HTTP 429/5xx;
+- a per-request JSON-lines log.
+
+It is a re-implementation released in November 2026 so that the measurement can be repeated against current endpoints. The May 2025 measurements reported in the manuscript were taken with the authors' original test harness.
+
+## History
+
+The earlier exploratory implementation (`real_phishing_detector.py`, TF-IDF character n-grams, sample-level split) was removed in commit `50b6311`. Its outputs (`url_vectorizer.pkl`, `phishing_classifier.pkl`, `model_metadata.json`, `model_performance.png`) were removed in `v2.1`. Its results are not reported in the manuscript.
