@@ -282,7 +282,7 @@ class RealDataAnalyzer:
         print(f"   • Analysis saved to: real_analysis_outputs/analysis_results.json")
         
         if successful > 0:
-            print(f"\n🎉 Ready for ML training! Run: python real_phishing_detector.py")
+            print(f"\n🎉 Ready for ML training! Run: python train_classifier.py")
 
 def main():
     """Run the real data analysis"""
