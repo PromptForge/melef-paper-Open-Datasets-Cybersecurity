@@ -284,12 +284,14 @@ def make_figure(out, y):
     p = out["partition"]
     tr_ph = int((y == 1).sum()) - p["test_phishing"]
     tr_bn = p["train"] - tr_ph
-    c.bar(["Train", "Held-out"], [tr_bn, p["test_benign"]], color=c1, label="Benign (Tranco domains)")
-    c.bar(["Train", "Held-out"], [tr_ph, p["test_phishing"]], bottom=[tr_bn, p["test_benign"]],
+    c.bar(["Train", "Held-out"], [tr_bn, p["test_benign"]], width=0.5, color=c1, label="Benign (Tranco domains)")
+    c.bar(["Train", "Held-out"], [tr_ph, p["test_phishing"]], width=0.5, bottom=[tr_bn, p["test_benign"]],
           color=c2, label="Phishing (OpenPhish URLs)")
     c.set_title("(c) Sample composition by partition", loc="left")
     c.set_ylabel("Records")
-    c.legend(frameon=False)
+    c.set_xlim(-0.6, 1.6)
+    c.set_ylim(0, 820)
+    c.legend(frameon=False, loc="upper right")
 
     d = ax[1, 1]
     ad = list(out["adhoc_phishing_probability"].items())
