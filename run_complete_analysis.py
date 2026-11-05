@@ -46,101 +46,8 @@ def run_command(description, command, required=True):
             return True
 
 def create_summary_visualization():
-    """Create final summary visualization"""
-    print(f"\n{'='*60}")
-    print(f"📊 Creating Summary Visualization")
-    print(f"{'='*60}")
-    
-    try:
-        import matplotlib.pyplot as plt
-        import json
-        
-        # Load results from all components
-        analysis_path = 'real_analysis_outputs/analysis_results.json'
-        
-        if os.path.exists(analysis_path):
-            with open(analysis_path, 'r') as f:
-                analysis_data = json.load(f)
-            
-            # Create summary figure
-            fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 10))
-            
-            # Dataset access success
-            datasets = ['OpenPhish', 'Tranco', 'URLhaus']
-            success_count = 0
-            dataset_volumes = []
-            
-            for ds in ['openphish', 'tranco', 'urlhaus']:
-                if analysis_data['dataset_analysis'].get(ds, {}).get('success', False):
-                    success_count += 1
-                    if ds == 'openphish':
-                        dataset_volumes.append(analysis_data['dataset_analysis'][ds]['total_urls'])
-                    elif ds == 'tranco':
-                        dataset_volumes.append(analysis_data['dataset_analysis'][ds]['total_domains'])
-                    elif ds == 'urlhaus':
-                        dataset_volumes.append(analysis_data['dataset_analysis'][ds]['total_records'])
-                else:
-                    dataset_volumes.append(0)
-            
-            # Chart 1: Dataset Accessibility
-            ax1.pie([success_count, len(datasets)-success_count], 
-                   labels=[f'Accessible\n({success_count})', f'Blocked\n({len(datasets)-success_count})'],
-                   colors=['lightgreen', 'lightcoral'], autopct='%1.0f%%', startangle=90)
-            ax1.set_title('Dataset Accessibility\n(Real API Testing)', fontweight='bold')
-            
-            # Chart 2: Data Volume
-            colors = ['green' if vol > 0 else 'red' for vol in dataset_volumes]
-            bars = ax2.bar(datasets, dataset_volumes, color=colors)
-            ax2.set_ylabel('Records Downloaded')
-            ax2.set_title('Real Data Volume\n(Actual Downloads)', fontweight='bold')
-            ax2.set_yscale('log')
-            
-            # Add value labels
-            for bar, vol in zip(bars, dataset_volumes):
-                if vol > 0:
-                    ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height(), 
-                           f'{vol:,}', ha='center', va='bottom', fontweight='bold')
-            
-            # Chart 3: Analysis Timeline
-            steps = ['Download\nData', 'Analyze\nDatasets', 'Train\nModel', 'Generate\nReports']
-            progress = [1, 1, 0, 1]  # Will be updated if model exists
-            
-            if os.path.exists('results/results.json'):
-                progress[2] = 1
-            
-            colors = ['green' if p else 'orange' for p in progress]
-            ax3.bar(steps, progress, color=colors)
-            ax3.set_ylim(0, 1.2)
-            ax3.set_ylabel('Completion Status')
-            ax3.set_title('Pipeline Progress\n(Real Implementation)', fontweight='bold')
-            
-            for i, (step, status) in enumerate(zip(steps, progress)):
-                symbol = '✅' if status else '⏳'
-                ax3.text(i, status + 0.05, symbol, ha='center', va='bottom', fontsize=16)
-            
-            # Chart 4: Research Impact Summary
-            impact_areas = ['Threat\nDetection', 'ML\nTraining', 'Academic\nResearch', 'Reproducible\nStudies']
-            impact_scores = [0.9, 0.95, 0.85, 0.9]  # Based on data availability
-            
-            ax4.bar(impact_areas, impact_scores, color='skyblue')
-            ax4.set_ylim(0, 1.0)
-            ax4.set_ylabel('Suitability Score')
-            ax4.set_title('Research Applications\n(Evidence-Based)', fontweight='bold')
-            
-            for i, score in enumerate(impact_scores):
-                ax4.text(i, score + 0.02, f'{score:.1%}', ha='center', va='bottom', fontweight='bold')
-            
-            plt.tight_layout()
-            plt.savefig('real_analysis_outputs/complete_analysis_summary.png', 
-                       dpi=300, bbox_inches='tight')
-            plt.close()
-            
-            print("✅ Summary visualization created: real_analysis_outputs/complete_analysis_summary.png")
-            return True
-        
-    except Exception as e:
-        print(f"❌ Visualization creation failed: {e}")
-        return False
+    """Figure 1 of the manuscript, computed from the downloaded snapshot."""
+    return run_command("Create Figure 1 (snapshot characteristics)", ["make_figure1.py"], required=False)
 
 def generate_final_report():
     """Generate final comprehensive report"""
@@ -179,7 +86,7 @@ def generate_final_report():
                 'total_records_analyzed': results.get('download', {}).get('total_records', 0),
                 'analysis_completed': 'analysis' in results,
                 'model_trained': 'model' in results,
-                'visualization_created': os.path.exists('real_analysis_outputs/complete_analysis_summary.png')
+                'visualization_created': os.path.exists('results/dataset_characteristics_analysis.png')
             },
             'paper_contributions': [
                 'Practical dataset accessibility testing methodology',
@@ -253,7 +160,7 @@ def main():
     outputs = []
     if os.path.exists('real_analysis_outputs/analysis_results.json'):
         outputs.append("✅ Real dataset analysis with quantitative metrics")
-    if os.path.exists('real_analysis_outputs/complete_analysis_summary.png'):
+    if os.path.exists('results/dataset_characteristics_analysis.png'):
         outputs.append("✅ Publication-ready summary visualization")
     if os.path.exists('results/results.json'):
         outputs.append("✅ Diagnostic pipeline results (results/results.json)")

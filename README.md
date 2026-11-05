@@ -8,19 +8,21 @@ Code and data snapshot for the manuscript *An Evaluative Overview of Open Datase
 
 | Manuscript element | Script | Output |
 |---|---|---|
+| Figure 1 (snapshot characteristics) | `make_figure1.py` | `results/dataset_characteristics_analysis.png` |
 | Table 5, Section 4.3 (descriptive measures, overlap) | `snapshot_measures.py` | `results/snapshot_measures.json` |
 | Section 4.4, Figure 2 (diagnostic pipeline) | `train_classifier.py` | `results/results.json`, `results/ml_performance_analysis.png`, `dataset.csv` |
 | Section 4.2 protocol (Gate 1), for re-measurement | `accessibility_protocol.py` | `results/accessibility_log.jsonl` |
 | Snapshot download (6 Aug 2025) | `download_real_datasets.py` | `real_data/` |
-| Snapshot overview (`paper_results/analysis_results.json`, `complete_analysis_summary.png`) | `analyze_real_data.py` | `real_analysis_outputs/` |
+| Snapshot overview (`paper_results/analysis_results.json`) | `analyze_real_data.py` | `real_analysis_outputs/` |
 
 ```bash
 pip install -r requirements.txt
+python make_figure1.py
 python snapshot_measures.py
 python train_classifier.py
 ```
 
-`run_complete_analysis.py` runs the full chain (download, overview, measures, pipeline) on freshly downloaded data in `real_data/`.
+`run_complete_analysis.py` runs the full chain (download, overview, measures, pipeline, Figure 1) on freshly downloaded data in `real_data/`.
 
 Both analysis scripts are deterministic (seed 42) and read the snapshot in `paper_results/`.
 
@@ -31,7 +33,7 @@ Both analysis scripts are deterministic (seed 42) and read the snapshot in `pape
 - `openphish_urls.txt`: OpenPhish community feed, 300 URLs.
 - `urlhaus_data.csv`: URLhaus recent-URLs CSV dump, 19,540 records added between 7 July and 6 August 2025.
 - `tranco_domains.csv`: Tranco top-1M list.
-- `analysis_results.json`, `complete_analysis_summary.png`: overview statistics and figure computed from the snapshot by `analyze_real_data.py`.
+- `analysis_results.json`: overview statistics computed from the snapshot by `analyze_real_data.py`.
 
 Each file remains subject to its provider's terms of use.
 
@@ -62,4 +64,4 @@ It is a re-implementation released in November 2026 so that the measurement can 
 
 ## History
 
-The earlier exploratory implementation (`real_phishing_detector.py`, TF-IDF character n-grams, sample-level split) was removed in commit `50b6311`. Its outputs (`url_vectorizer.pkl`, `phishing_classifier.pkl`, `model_metadata.json`, `model_performance.png`) were removed in `v2.1`. Its results are not reported in the manuscript.
+The earlier exploratory implementation (`real_phishing_detector.py`, TF-IDF character n-grams, sample-level split) was removed in commit `50b6311`. Its outputs (`url_vectorizer.pkl`, `phishing_classifier.pkl`, `model_metadata.json`, `model_performance.png`) were removed in `v2.1`, together with an earlier summary figure (`complete_analysis_summary.png`) whose "suitability scores" were fixed values in the code rather than computed from data. Its results are not reported in the manuscript.
