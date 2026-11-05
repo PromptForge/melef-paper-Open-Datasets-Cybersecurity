@@ -105,7 +105,7 @@ def create_summary_visualization():
             steps = ['Download\nData', 'Analyze\nDatasets', 'Train\nModel', 'Generate\nReports']
             progress = [1, 1, 0, 1]  # Will be updated if model exists
             
-            if os.path.exists('real_model/model_metadata.json'):
+            if os.path.exists('results/results.json'):
                 progress[2] = 1
             
             colors = ['green' if p else 'orange' for p in progress]
@@ -245,7 +245,7 @@ def main():
     print(f"📁 Results available in:")
     print(f"   • real_data/ - Downloaded datasets")
     print(f"   • real_analysis_outputs/ - Analysis results and figures")
-    print(f"   • real_model/ - Trained ML model (if successful)")
+    print(f"   • results/ - Diagnostic pipeline outputs (Section 4.4, Figure 2)")
     
     print(f"\n📊 Key outputs for your paper:")
     
@@ -255,8 +255,8 @@ def main():
         outputs.append("✅ Real dataset analysis with quantitative metrics")
     if os.path.exists('real_analysis_outputs/complete_analysis_summary.png'):
         outputs.append("✅ Publication-ready summary visualization")
-    if os.path.exists('real_model/model_metadata.json'):
-        outputs.append("✅ Trained ML model with performance metrics")
+    if os.path.exists('results/results.json'):
+        outputs.append("✅ Diagnostic pipeline results (results/results.json)")
     if os.path.exists('real_analysis_outputs/final_report.json'):
         outputs.append("✅ Comprehensive evaluation report")
     
