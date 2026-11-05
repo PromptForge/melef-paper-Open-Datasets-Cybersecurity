@@ -1,0 +1,58 @@
+{
+  "openphish": {
+    "records": 300,
+    "distinct_records": 300,
+    "distinct_hostnames": 191,
+    "records_with_ip_host": 0,
+    "distinct_registered_domains": 113,
+    "distinct_tlds": 33,
+    "nonroot_path": 249,
+    "query_component": 8,
+    "mean_string_length": 53.73,
+    "mean_hostname_length": 22.69,
+    "https": 248
+  },
+  "urlhaus": {
+    "records": 19540,
+    "distinct_records": 19540,
+    "distinct_hostnames": 6575,
+    "records_with_ip_host": 15810,
+    "distinct_registered_domains": 387,
+    "distinct_tlds": 80,
+    "nonroot_path": 19517,
+    "query_component": 294,
+    "mean_string_length": 37.79,
+    "mean_hostname_length": 14.58,
+    "https": 1253,
+    "dateadded_range": [
+      "2025-07-07 00:00:51",
+      "2025-08-06 07:44:11"
+    ],
+    "threat_types": [
+      "malware_download"
+    ]
+  },
+  "tranco": {
+    "records": 1000000,
+    "distinct_records": 1000000,
+    "distinct_hostnames": 1000000,
+    "records_with_ip_host": 0,
+    "distinct_registered_domains": 999991,
+    "distinct_tlds": 1023,
+    "nonroot_path": 0,
+    "query_component": 0,
+    "mean_string_length": 13.65,
+    "mean_hostname_length": 13.65
+  },
+  "overlap": {
+    "exact_url_openphish_urlhaus": 0,
+    "hostname_openphish_urlhaus": 0,
+    "registered_domain_openphish_urlhaus": [
+      "netlify.app",
+      "r2.dev",
+      "vercel.app"
+    ],
+    "tranco_domains_equal_to_openphish_hostname": 1,
+    "tranco_domains_equal_to_urlhaus_hostname": 14
+  }
+}
