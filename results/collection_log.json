@@ -1,0 +1,31 @@
+{
+  "collected_utc": "2026-11-11T08:51:07+00:00",
+  "user_agent": "AcademicResearch-MELEF-Client/1.0 (+https://github.com/PromptForge/melef-paper-Open-Datasets-Cybersecurity; contact: dkarapiperis@eap.gr)",
+  "crawl_train": "CC-MAIN-2025-33",
+  "crawl_test": "CC-MAIN-2026-43",
+  "replacement_rule": "domains without an HTML capture with a non-root path are replaced by randomly drawn domains of the same Tranco rank tier until 200 per tier",
+  "benign_train": {
+    "urls": 600,
+    "domains_tried": 1195,
+    "domains_without_capture": 595,
+    "original_sample_domains_used": 299
+  },
+  "openphish_test": {
+    "urls": 300,
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/openphish/public_feed/refs/heads/main/feed.txt",
+    "redirects": [
+      "https://raw.githubusercontent.com/openphish/public_feed/refs/heads/main/feed.txt"
+    ]
+  },
+  "tranco_test": {
+    "final_url": "https://tranco-list.eu/download/daily/top-1m.csv.zip",
+    "size": 1000000
+  },
+  "benign_test": {
+    "urls": 600,
+    "domains_tried": 1444,
+    "domains_without_capture": 844
+  },
+  "urlhaus_csv_recent_status": 410
+}
