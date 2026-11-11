@@ -303,7 +303,8 @@ def make_figure(out, y):
     for s in ax.flat:
         s.spines[["top", "right"]].set_visible(False)
     fig.tight_layout()
-    fig.savefig(os.path.join(OUT_DIR, "ml_performance_analysis.png"), dpi=300)
+    fig.savefig(os.path.join(OUT_DIR, "ml_performance_analysis.png"), dpi=600)
+    fig.savefig(os.path.join(OUT_DIR, "ml_performance_analysis.pdf"))
 
 
 if __name__ == "__main__":

@@ -94,5 +94,6 @@ for s in ax.flat:
     s.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
 os.makedirs("results", exist_ok=True)
-fig.savefig("results/dataset_characteristics_analysis.png", dpi=300)
+fig.savefig("results/dataset_characteristics_analysis.png", dpi=600)
+fig.savefig("results/dataset_characteristics_analysis.pdf")
 print("top tags", top, "ip", ip_hosts, "top tlds", t10, "total", sum(sizes))
